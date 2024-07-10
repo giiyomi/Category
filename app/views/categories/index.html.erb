@@ -1,6 +1,43 @@
+<head>
+   <style>
+     .addButton {
+       margin:auto;
+       position:relative;
+       text-decoration: none;
+       color:green;
+     }
+
+     .addButton:hover {
+        color:rgba(0, 100, 0, 0.5)
+     }
+
+     .addButton:hover::after{
+      display:flex;
+      width:max-content;
+      position:absolute;
+      content:"Add Something";
+      font-size: .9rem;
+      color: green;
+      left: 26px;
+      top: 11px
+     }
+
+     h1{
+      width:max-content;
+      display:flex;
+      gap: 20px;
+     }
+     
+
+     
+   </style>
+ </head>
+
+
+
 <p style="color: green"><%= notice %></p>
 
-<h1>Categories</h1>
+<h1>Categories <%= link_to "+", new_category_path, class: "addButton" %></h1>
 
 <div id="categories">
   <% @categories.each do |category| %>
