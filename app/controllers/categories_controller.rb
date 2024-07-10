@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: %i[ show ]
 
   def index
     @categories = Category.all
@@ -13,7 +14,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
     if @category.save
-        format.html { redirect_to categories_url, notice: "Category was successfully added"}
+        format.html { redirect_to category_url(@category), notice: "Category was successfully added"}
     else
         format.html { render :new, status: :unprocessable_entity }
         end
@@ -21,6 +22,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit(:name)

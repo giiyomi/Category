@@ -19,7 +19,9 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       post categories_url, params: { category: {name: @category.name} }
     end
 
-    assert_redirected_to categories_url
+    assert_redirected_to category_url(Category.last)
   end
+
+
 
 end
