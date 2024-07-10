@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<div id="categories">
+  <% @categories.each do |category| %>
+    <%= render category %>
+  <% end %>
+</div>
+
+
