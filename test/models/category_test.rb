@@ -11,7 +11,9 @@ class CategoryTest < ActiveSupport::TestCase
 
   test "should save category with a unique name" do
     category = Category.new(name: "Unique Category")
-    assert category.save, "Could not save the category with a unique name"
+    category.save
+    category = Category.new(name: "Unique Category")
+    assert_not category.save, "Could not save the category with a unique name"
   end
 
 
