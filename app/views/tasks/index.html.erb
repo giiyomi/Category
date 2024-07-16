@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tasks</title>
+  <style>
+    table {
+      width: 50%;
+      margin: auto;
+      border: 1px solid black;
+      text-align: center;
+      gap: 10px;
+    }
+
+    td {
+      border: 1px solid black;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #fff;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 15px;
+      margin: 5px; /* Optional: Add some margin for better spacing */
+    }
+
+    .button:hover {
+      background-color: #3e8e41;
+    }
+
+    .button:active {
+      background-color: #3e8e41;
+      transform: translateY(4px);
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <%= link_to '🔙', category_path(@category), class: 'button' %>
+  <p style="margin: auto; color: green; text-align: center"><%= notice %></p>
+  <% if @tasks.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Task ID</th>
+          <th>Description</th>
+          <th>Category ID</th>
+          <th>Action(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td><%= task.id %></td>
+            <td><%= task.details %></td>
+            <td><%= task.category_id %></td>
+            <td>
+              
+              <%= link_to 'Edit', edit_category_task_path(@category, task)%> |
+              <%= link_to 'Show', category_task_path(@category, task)%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No further information yet</p>
+  <% end %>
+
+  <div class="button-container">
+    <%= link_to 'Back to All Categories', categories_path, class: 'button' %>
+    <%= link_to 'Add Task', new_category_task_path(@category), class: 'button' %>
+  </div>
+</body>
+</html>

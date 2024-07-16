@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Details</title>
+  
+  <style>
+    h2, p {
+      gap:5px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    h2 {
+        margin-top:0px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #fff;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 15px;
+      margin: 5px;
+    }
+
+    .button:hover {
+      background-color: #3e8e41;
+    }
+
+    .button:active {
+      background-color: #3e8e41;
+      transform: translateY(4px);
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+    <%= link_to '🔙', category_tasks_path(@category), class: 'button' %>
+    <h2 class="title">Task Details</h2>
+    <p><strong>Task  ID:</strong> <%= @task.id %></p>
+    <p style="flex-direction: column"><strong >Description:</strong> <%= @task.details %></p>
+    <p><strong>Category ID:</strong> <%= @task.category_id %></p>
+    <div class="button-container">
+        <%= link_to 'Edit', edit_category_task_path(@category, @task), class: 'button' %>
+        <%= button_to "Delete this task", category_task_path(@category, @task), method: :delete, class: 'button' %>
+    </div>
+</body>
+</html>

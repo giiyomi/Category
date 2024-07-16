@@ -1,0 +1,22 @@
+<%= form_with model: [@category, @task], local: true, html: { class: "form-container" } do |f| %>
+  <p>
+    <% if @task.errors.any? %>
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </p>
+
+
+
+  <p>
+    <%= f.label :details %><br>
+    <%= f.text_field :details %>
+  </p>
+
+  <p>
+    <%= f.submit 'Save', class: 'button' %>
+  </p>
+<% end %>

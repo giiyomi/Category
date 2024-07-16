@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Task</title>
+  <style>
+    h1, p {
+      margin: 5px;
+      padding: 0;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #fff;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 15px;
+      margin: 5px;
+    }
+
+    .button:hover {
+      background-color: #3e8e41;
+    }
+
+    .button:active {
+      background-color: #3e8e41;
+      transform: translateY(4px);
+    }
+
+    .title{
+      text-align: center;
+      font-style: italic;
+    }
+
+    .form-container{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+  </style>
+</head>
+<body>
+    <%= link_to "🔙", category_tasks_path(@category), class: 'button' %>
+    <h1 class="title">Edit Task</h1>
+
+    <%= render 'form', category: @category, task: @task %>
+</body>
+</html>
