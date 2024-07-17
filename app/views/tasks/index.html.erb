@@ -1,18 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tasks</title>
   <style>
-    table {
-      width: 50%;
-      margin: auto;
-      border: 1px solid black;
-      text-align: center;
-      gap: 10px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    td {
-      border: 1px solid black;
+    .header {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0px;
+      margin-top: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      flex-grow: 1;
+      margin:0px;
+    }
+
+    table {
+      width: 80%;
+      margin: 0px;
+      border-collapse: collapse;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center; /* Centering text in table headers and data cells */
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
     }
 
     .button {
@@ -26,28 +70,38 @@
       color: #fff;
       background-color: #4CAF50;
       border: none;
-      border-radius: 15px;
-      margin: 5px; /* Optional: Add some margin for better spacing */
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .button:hover {
-      background-color: #3e8e41;
+      background-color: #45a049;
     }
 
     .button:active {
       background-color: #3e8e41;
-      transform: translateY(4px);
+      transform: translateY(2px);
     }
 
     .button-container {
+      margin: 20px;
       text-align: center;
-      margin-top: 20px;
+    }
+
+    p.notice {
+      margin: 20px;
+      color: green;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <%= link_to '🔙', category_path(@category), class: 'button' %>
-  <p style="margin: auto; color: green; text-align: center"><%= notice %></p>
+  <div class="header">
+    <%= link_to '🔙', category_path(@category), class: 'button' %>
+    <h2 class="title">Tasks for <%= @category.name %>'s Category</h2>
+  </div>
+  <p class="notice"><%= notice %></p>
   <% if @tasks.any? %>
     <table>
       <thead>
@@ -55,6 +109,7 @@
           <th>Task ID</th>
           <th>Description</th>
           <th>Category ID</th>
+          <th>Due Date</th>
           <th>Action(s)</th>
         </tr>
       </thead>
@@ -64,10 +119,10 @@
             <td><%= task.id %></td>
             <td><%= task.details %></td>
             <td><%= task.category_id %></td>
+            <td><%= task.due_date %></td>
             <td>
-              
-              <%= link_to 'Edit', edit_category_task_path(@category, task)%> |
-              <%= link_to 'Show', category_task_path(@category, task)%>
+              <%= link_to 'Edit', edit_category_task_path(@category, task) %> |
+              <%= link_to 'Show', category_task_path(@category, task) %>
             </td>
           </tr>
         <% end %>

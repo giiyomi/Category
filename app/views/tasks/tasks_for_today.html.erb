@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Tasks for Today</title>
+  
+  <style>
+    /* Add your custom CSS styles here */
+  </style>
+</head>
+<body>
+  <h2>Tasks for Today</h2>
+
+  <% if @tasks_today.any? %>
+    <ul>
+      <% @tasks_today.each do |task| %>
+        <li>
+        <%= task.details %> - Due Date: 
+        <%= task.due_date.present? ? task.due_date.strftime('%B %d, %Y') : 'No due date' %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No tasks due today.</p>
+  <% end %>
+
+  <%= link_to 'Back to Tasks', category_tasks_path(@category), class: 'button' %>
+</body>
+</html>

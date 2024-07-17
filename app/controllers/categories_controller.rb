@@ -1,10 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, only: %i[ show edit update ]
+  before_action :set_category, only: %i[ show edit update]
 
   def index
     @categories = Category.all
   end
+
+  def tasks_for_today
+    @alltasks = Task.where(due_date: Date.today)
+  end
+
 
   def  new
     @category = Category.new

@@ -4,8 +4,9 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
-
   setup do
+    @user = users(:one)
+    sign_in @user
     @category = categories(:one)
   end
 
@@ -31,6 +32,5 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     get edit_category_url(@category)
     assert_response :success
   end
-
 
 end

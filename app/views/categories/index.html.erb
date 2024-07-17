@@ -1,54 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-   <style>
-     .addButton {
-       margin:auto;
-       padding: 2px 7px;
-       border-radius: 5px;
-       position:relative;
-       text-decoration: none;
-       font-size: 1.2rem;
-       color:green;
-       background: rgba(100,100,100, .3)
-     }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
 
-     .addButton:hover {
-        color:rgba(0, 100, 0, 0.5);
-        background: rgba(100,100,100, .5)
-     }
+    h1 {
+      margin: 20px auto;
+    }
 
-     .addButton:hover::after{
-      display:flex;
-      width:max-content;
-      position:absolute;
-      content:"Add Something";
-      font-size: .9rem;
-      color: green;
-      left: 30px;
-      top: 5px
-     }
+    table {
+      width: 80%;
+      margin: auto;
+      border: 1px solid black;
+      text-align: center;
+      border-collapse: collapse;
+      background-color: #fff;
+    }
 
-     h1{
-      width:max-content;
-      display:flex;
-      gap: 20px;
-     }
-   </style>
- </head>
+    th{
+      background-color: #4CAF50 !important;
+      color: white;
+    }
 
+    td, th {
+      border: 1px solid black;
+      padding: 8px;
+    }
 
+    th {
+      background-color: #f2f2f2;
+    }
 
+    .addButton {
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      outline: none;
+      background-color: #4CAF50;
+      font-size: 1.2rem;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
+      position: relative;
+      display: inline-block;
+    }
 
+    .addButton::after {
+      content: "Add Something";
+      position: absolute;
+      top: 10px;
+      left: 50px;
+      font-size: 0.9rem;
+      text-wrap: nowrap;
+      color: #4CAF50;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-<h1>Categories <%= link_to "+", new_category_path, class: "addButton" %></h1>
+    .addButton:hover::after {
+      opacity: 1;
+    }
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
+    .addButton:hover {
+      background-color: #45a049;
+    }
 
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
-</div>
+    .addButton:active {
+      background-color: #3e8e41;
+      transform: translateY(4px);
+    }
 
+    .taskButton {
+      margin: 20px auto;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      outline: none;
+      background-color: #4CAF50;
+      font-size: 1.2rem;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
 
+    .taskButton:hover {
+      background-color: #45a049;
+    }
+
+    .taskButton:active {
+      background-color: #3e8e41;
+      transform: translateY(4px);
+    }
+  </style>
+</head>
+<body>
+  <h1>Categories <%= link_to "+", new_category_path, class: "addButton" %></h1>
+
+  <table class="category">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.name %></td>
+          <td><%= category.description %></td>
+          <td>
+            <%= link_to 'Show', category_path(category) %> |
+            <%= link_to 'Edit', edit_category_path(category) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Today's Tasks", tasks_for_today_categories_path, class: "taskButton" %>
+</body>
+</html>

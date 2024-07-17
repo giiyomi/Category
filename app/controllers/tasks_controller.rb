@@ -7,6 +7,10 @@ class TasksController < ApplicationController
     @tasks = @category.tasks
   end
 
+  def tasks_for_today
+    @tasks_today = Task.all
+  end
+
   def new
     @task = @category.tasks.build
   end
@@ -39,7 +43,6 @@ class TasksController < ApplicationController
     redirect_to category_tasks_path(@category), notice: 'Task was successfully deleted.'
   end
   
-
   private
 
   def get_category
@@ -51,6 +54,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:details, :category_id)
+    params.require(:task).permit(:details, :category_id, :due_date)
   end
 end

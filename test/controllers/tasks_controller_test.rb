@@ -4,8 +4,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
-
   setup do
+    @user = users(:one)
+    sign_in @user
     @category = categories(:one)
     @task = tasks(:one)
   end
@@ -22,7 +23,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create task" do
     assert_difference('Task.count') do
-      post category_tasks_path(@category), params: { task: { details: "New Task", category_id: @category.id } }
+      post category_tasks_path(@category), params: { task: { details: "New Task", due_date: Date.today, category_id: @category.id } }
     end
 
     assert_redirected_to category_tasks_path(@category)
@@ -43,6 +44,4 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to category_tasks_path(@category)
     assert_equal 'Task was successfully deleted.', flash[:notice]
   end
-
-
 end

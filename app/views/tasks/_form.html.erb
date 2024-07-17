@@ -12,11 +12,18 @@
 
 
   <p>
-    <%= f.label :details %><br>
-    <%= f.text_field :details %>
+    <%= f.label :details%>:
+    <br>
+    <%= f.text_field :details, class: 'noOutline' %>
   </p>
 
   <p>
-    <%= f.submit 'Save', class: 'button' %>
+    <%= f.label :due_date %>:
+    <br>
+    <%= f.date_field :due_date %>
   </p>
+
+
+    <%= f.submit 'Save', class: 'button' %>
+
 <% end %>

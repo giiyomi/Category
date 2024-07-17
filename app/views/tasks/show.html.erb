@@ -46,6 +46,17 @@
       flex-direction: row;
       justify-content: center;
     }
+
+    .colorRed{
+      margin: 0px;
+      color: red;
+    }
+
+    .colorGreen{
+      margin: 0px;
+      color: green;
+    }
+
   </style>
 </head>
 <body>
@@ -54,9 +65,21 @@
     <p><strong>Task  ID:</strong> <%= @task.id %></p>
     <p style="flex-direction: column"><strong >Description:</strong> <%= @task.details %></p>
     <p><strong>Category ID:</strong> <%= @task.category_id %></p>
+
+
+      <p style="margin-bottom: 0px"><strong>Due date:</strong> <%= @task.due_date.strftime("%B %d, %Y") %></p> 
+      <% days_remaining = (@task.due_date - Date.today).to_i %>
+      <% if days_remaining == 1 %>
+       <p class="colorRed">(<%= days_remaining %> day remaining)</p>
+      <% else %>
+      <p class="colorGreen">(<%= days_remaining %> days remaining)</p>
+      <% end %>
+
+
     <div class="button-container">
         <%= link_to 'Edit', edit_category_task_path(@category, @task), class: 'button' %>
         <%= button_to "Delete this task", category_task_path(@category, @task), method: :delete, class: 'button' %>
+        
     </div>
 </body>
 </html>
