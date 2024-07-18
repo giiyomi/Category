@@ -1,25 +1,26 @@
 <%= form_with model: [@category, @task], local: true, html: { class: "form-container" } do |f| %>
-  <p>
-    <% if @task.errors.any? %>
+  <% if @task.errors.any? %>
+    <div class="form-errors">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
       <ul>
         <% @task.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    <% end %>
-  </p>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label :details %>
+    <%= f.text_field :details, class: 'form-control noOutline' %>
+  </div>
 
-  <p>
-    <%= f.label :details%>:
-    <br>
-    <%= f.text_field :details, class: 'noOutline' %>
-  </p>
+  <div class="form-group">
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= f.label :due_date %>:
-    <br>
-    <%= f.date_field :due_date %>
-  </p>
-
-    <%= f.submit 'Save', class: 'button' %>
+  <div class="form-group form-submit">
+    <%= f.submit 'Save', class: 'button submit-button' %>
+  </div>
 <% end %>
