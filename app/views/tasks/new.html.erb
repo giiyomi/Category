@@ -1,50 +1,121 @@
-<!DOCTYPE html>
 <html>
 <head>
   <style>
-      h1, p {
-      margin: 5px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
+
+    .container {
+      max-width: 40%;
+      width: 100%;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    h1 {
+      color: #333;
+      margin: 0px;
       text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="text"], textarea, input[type="date"] {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-errors {
+      color: red;
+      margin-bottom: 20px;
+    }
+
+    .form-errors h2 {
+      margin: 0 0 10px 0;
+    }
+
+    .form-errors ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .form-actions input[type="submit"] {
+      padding: 10px 20px;
       background-color: #4CAF50;
+      color: #fff;
       border: none;
-      border-radius: 15px;
-      margin: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .form-actions input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .actions {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .actions a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 1rem;
+      margin: 0 10px;
+    }
+
+    .actions a:hover {
+      text-decoration: underline;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 1rem;
+      display: inline-block;
+      transition: background-color 0.3s ease;
     }
 
     .button:hover {
-      background-color: #3e8e41;
+      background-color: #45a049;
     }
 
-    .button:active {
-      background-color: #3e8e41;
-      transform: translateY(4px);
-    }
-
-    .title{
-      text-align: center;
-      font-style: italic;
-    }
-
-    .form-container{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
   </style>
 </head>
 <body>
-  <%= link_to "🔙", category_tasks_path(@category), class: 'button' %>
-  <h1 class= 'title'>New Task</h1>
-  <%= render 'form', category: @category, task: @task %>
+  <div class="container">
+    <%= link_to "Back", category_tasks_path(@category), class: 'button' %>
+    <h1>New Task</h1>
+    <%= render 'form', category: @category, task: @task %>
+  </div>
 </body>
 </html>

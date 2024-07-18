@@ -21,7 +21,7 @@ class TaskTest < ActiveSupport::TestCase
     assert_includes task.errors[:details], 'has already been taken'
   end
 
-    test 'should not be valid without a due_date' do
+  test 'should not be valid without a due_date' do
     task = Task.new(details: 'Sample Task', due_date: nil, category: @category)
     assert_not task.valid?
     assert_includes task.errors[:due_date], "can't be blank"
