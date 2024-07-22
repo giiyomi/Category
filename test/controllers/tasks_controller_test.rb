@@ -32,7 +32,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     assert_not_nil @category, "Category should not be nil"
     assert_not_nil @task, "Task should not be nil"
-    get edit_category_task_path(@category, @task)
+      get edit_category_task_path(@category, @task)
     assert_response :success
   end
 

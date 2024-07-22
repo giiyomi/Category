@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :get_category
-  before_action :get_task, only: [:show, :edit, :update, :destroy]
+  before_action :get_task, only: %i[show edit update destroy]
 
   def index
     @tasks = @category.tasks
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to category_tasks_path(@category), notice: 'Task was successfully created.'
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to category_tasks_path(@category), notice: 'Task was successfully deleted.'
   end
-  
+
   private
 
   def get_category
@@ -56,4 +56,5 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:details, :category_id, :due_date)
   end
+
 end

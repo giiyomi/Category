@@ -22,7 +22,7 @@
       background-color: #fff;
     }
 
-    th{
+    th {
       background-color: #4CAF50 !important;
       color: white;
     }
@@ -54,7 +54,7 @@
     }
 
     .addButton::after {
-      content: "Add Something";
+      content: "Add Category";
       position: absolute;
       top: 10px;
       left: 50px;
@@ -102,35 +102,45 @@
       background-color: #3e8e41;
       transform: translateY(4px);
     }
+
+    .empty-message {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 20px;
+    }
   </style>
 </head>
 <body>
   <h1>Categories <%= link_to "+", new_category_path, class: "addButton" %></h1>
 
-  <table class="category">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Action(s)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @categories.each do |category| %>
+  <% if @categories.empty? %>
+    <p class="empty-message">Please click the plus sign to add a category now.</p>
+  <% else %>
+    <table class="category">
+      <thead>
         <tr>
-          <td><%= category.id %></td>
-          <td><%= category.name %></td>
-          <td><%= category.description %></td>
-          <td>
-            <%= link_to 'Show', category_path(category) %> |
-            <%= link_to 'Edit', edit_category_path(category) %>
-          </td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Action(s)</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.id %></td>
+            <td><%= category.name %></td>
+            <td><%= category.description %></td>
+            <td>
+              <%= link_to 'Show', category_path(category) %> |
+              <%= link_to 'Edit', edit_category_path(category) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 
-  <%= link_to "Today's Tasks", tasks_for_today_categories_path, class: "taskButton" %>
+  <%= link_to "Today's Task(s)", tasks_for_today_categories_path, class: "taskButton" %>
 </body>
 </html>

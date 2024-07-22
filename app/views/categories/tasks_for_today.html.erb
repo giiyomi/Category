@@ -53,7 +53,6 @@
       cursor: pointer;
       font-size: 1rem;
       text-decoration: none;
-
     }
 
     .allCategories:hover {
@@ -70,32 +69,35 @@
 <body>
   <div class="container">
     <div class="inner-content">
-      <h1>All Tasks for Today</h1>
-
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Details</th>
-            <th>Category ID</th>
-            <th>Category Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @alltasks.each do |task| %>
+      <h1>Today's Priority</h1>
+      
+      <% if @alltasks.any? %>
+        <table>
+          <thead>
             <tr>
-              <td><%= task.id %></td>
-              <td><%= task.details %></td>
-              <td><%= task.category_id %></td>
-              <td><%= task.category ? task.category.name : 'No Category Name' %></td>
+              <th>ID</th>
+              <th>Details</th>
+              <th>Category ID</th>
+              <th>Category Name</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @alltasks.each do |task| %>
+              <tr>
+                <td><%= task.id %></td>
+                <td><%= task.details %></td>
+                <td><%= task.category_id %></td>
+                <td><%= task.category ? task.category.name : 'No Category Name' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No Task(s) for today.</p>
+      <% end %>
 
       <a href="<%= categories_path %>" class="allCategories">Back to Categories</a>
     </div>
   </div>
-        
 </body>
 </html>

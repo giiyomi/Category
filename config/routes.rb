@@ -5,11 +5,8 @@ Rails.application.routes.draw do
       get 'tasks_for_today'
     end
     resources :tasks
-
-    
   end
 
-  
   get "up" => "rails/health#show", as: :rails_health_check
   root 'home#index'
 

@@ -1,15 +1,19 @@
 <html>
 <head>
   <style>
+    body {
+      font-family: Arial, sans-serif;      
+    }
+
     h2, p {
-      gap:5px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      gap: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     h2 {
-        margin-top:0px;
+      margin-top: 0px;
     }
 
     .button {
@@ -39,58 +43,59 @@
     .button-container {
       text-align: center;
       margin-top: 20px;
-      display:flex;
+      display: flex;
       flex-direction: row;
       justify-content: center;
     }
 
-    .colorRed{
+    .colorRed {
       margin: 0px;
       color: red;
     }
 
-    .colorGreen{
+    .colorGreen {
       margin: 0px;
       color: green;
     }
 
-    .hideDue{
-      display:none;
+    .hideDue {
+      display: none;
     }
-
   </style>
 </head>
 <body>
-    <%= link_to '🔙', category_tasks_path(@category), class: 'button' %>
-    <h2 class="title">Task Details</h2>
-    <p><strong>Task  ID:</strong> <%= @task.id %></p>
-    <p style="flex-direction: column"><strong >Description:</strong> <%= @task.details %></p>
-    <p><strong>Category ID:</strong> <%= @task.category_id %></p>
+  <%= link_to '🔙', category_tasks_path(@category), class: 'button' %>
+  <h2 class="title">Task Details</h2>
+  <p><strong>Task ID:</strong> <%= @task.id %></p>
+  <p><strong>Description:</strong> <%= @task.details %></p>
+  <p><strong>Category ID:</strong> <%= @task.category_id %></p>
 
-    <p style="margin-bottom: 0px"><strong>Due date:</strong> 
-      <% if @task.due_date.present? %>
-        <%= @task.due_date.strftime("%B %d, %Y") %>
-      <% else %>
-        "Not Specified"
-      <% end %>
-    </p>
-
+  <p style="margin-bottom: 0px"><strong>Due date:</strong> 
     <% if @task.due_date.present? %>
-      <% days_remaining = (@task.due_date - Date.today).to_i %>
-      <% if days_remaining == 1 %>
-        <p class="colorRed">(<%= days_remaining %> day remaining)</p>
+      <%= @task.due_date.strftime("%B %d, %Y") %>
+    <% else %>
+      Not Specified
+    <% end %>
+  </p>
+
+  <% if @task.due_date.present? %>
+    <% days_remaining = (@task.due_date - Date.today).to_i %>
+      <% if days_remaining < 0 %>
+        <p class="colorRed">Overdue: <%=days_remaining%> Day(s)  </p>
       <% elsif days_remaining == 0 %>
-        <p class="colorRed">(Due today)</p>
+        <p class="colorRed">Due today</p>
+      <% elsif days_remaining == 1 %>
+        <p class="colorRed">(<%= days_remaining %> day remaining)</p>
       <% else %>
         <p class="colorGreen">(<%= days_remaining %> days remaining)</p>
       <% end %>
-    <% else %>
-      <p class="hideDue"></p>
-    <% end %>
+  <% else %>
+    <p class="hideDue"></p>
+  <% end %>
 
-    <div class="button-container">
-        <%= link_to 'Edit', edit_category_task_path(@category, @task), class: 'button' %>
-        <%= button_to "Delete this task", category_task_path(@category, @task), method: :delete, class: 'button' %>
-    </div>
+  <div class="button-container">
+    <%= link_to 'Edit', edit_category_task_path(@category, @task), class: 'button' %>
+    <%= button_to "Delete this task", category_task_path(@category, @task), method: :delete, class: 'button' %>
+  </div>
 </body>
 </html>
