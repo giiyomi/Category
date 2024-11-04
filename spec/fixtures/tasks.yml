@@ -1,0 +1,26 @@
+# test/fixtures/tasks.yml
+one:
+  details: MyText
+  category: one
+
+two:
+  details: AnotherText
+  category: one
+# New fixtures for testing tasks_for_today
+task_one:
+  id: 1
+  details: "Task 1"
+  category_id: 1
+  due_date: <%= Date.today %>
+
+task_two:
+  id: 2
+  details: "Task 2"
+  category_id: 1
+  due_date: <%= Date.tomorrow %>
+
+task_three:
+  id: 3
+  details: "Task 3"
+  category_id: 2
+  due_date: <%= Date.today %>

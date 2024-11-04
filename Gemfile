@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.3"
+ruby "3.3.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
@@ -15,6 +15,10 @@ gem "sqlite3", "~> 1.4"
 gem "puma", ">= 5.0"
 
 
+gem 'bootstrap', '~> 5.3.0' # o ang pinakabagong bersyon
+
+
+gem 'sassc-rails'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -51,6 +55,9 @@ gem "devise"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'rails-controller-testing', '~> 1.0.5'
+  gem 'rspec-rails', '~> 5.0'
+  gem 'factory_bot_rails', '~> 6.2'
 end
 
 group :development do
@@ -68,6 +75,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 5.0'
+
 end
+
