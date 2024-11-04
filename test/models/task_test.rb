@@ -1,30 +1,29 @@
-require "test_helper"
+require 'rails_helper'
 
-class TaskTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  setup do
-    @category = categories(:one)
-    @task = tasks(:one)
-  end
-  
-  test "details should be present" do
-    @task.details = nil
-    assert_not @task.valid?
+RSpec.describe Task, type: :model do
+  before do
+    @category = Category.create!(name: 'Sample Category')
+    @task = Task.create!(details: 'Existing Task', due_date: Date.today, category: @category)
   end
 
-  test 'should not be valid with non-unique details' do
-    Task.create(details: 'Sample Task', due_date: Date.today, category: @category)
-    task = Task.new(details: 'Sample Task', due_date: Date.today, category: @category)
-    assert_not task.valid?
-    assert_includes task.errors[:details], 'has already been taken'
-  end
+  describe 'validations' do
+    it 'should not be valid without details' do
+      @task.details = nil
+      expect(@task).not_to be_valid
+      expect(@task.errors[:details]).to include("can't be blank")
+    end
 
-  test 'should not be valid without a due_date' do
-    task = Task.new(details: 'Sample Task', due_date: nil, category: @category)
-    assert_not task.valid?
-    assert_includes task.errors[:due_date], "can't be blank"
-  end
+    it 'should not be valid with non-unique details' do
+      Task.create!(details: 'Sample Task', due_date: Date.today, category: @category)
+      task = Task.new(details: 'Sample Task', due_date: Date.today, category: @category)
+      expect(task).not_to be_valid
+      expect(task.errors[:details]).to include('has already been taken')
+    end
 
+    it 'should not be valid without a due_date' do
+      task = Task.new(details: 'Sample Task', due_date: nil, category: @category)
+      expect(task).not_to be_valid
+      expect(task.errors[:due_date]).to include("can't be blank")
+    end
+  end
 end
