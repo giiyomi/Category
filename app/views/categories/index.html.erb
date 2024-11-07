@@ -1,174 +1,23 @@
-<html>
-<head>
-  <style>
-    body {
-      position:relative;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
+<%= stylesheet_link_tag 'categories/categories', media: 'all', 'data-turbo-track': 'reload' %>
 
-    h1 {
-      margin: 20px auto;
-    }
+<%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger position-absolute top-0 left-100% ms-2 mt-2" do %>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+  </svg>
+  <h3>Logout</h3>
+<% end %>
 
-    table {
-      width: 80%;
-      margin: auto;
-      border: 1px solid black;
-      text-align: center;
-      border-collapse: collapse;
-      background-color: #fff;
-    }
+<h1 id='category-title-holder' class="text-center mb-4" style="flex: .1; display: flex; justify-content: center; align-items: flex-end;">
+  Categories <%= link_to "+", new_category_path, class: "btn btn-success ms-3" %>
+</h1>
 
-    th {
-      background-color: #4CAF50 !important;
-      color: white;
-    }
-
-    td, th {
-      border: 1px solid black;
-      padding: 8px;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-
-    .addButton {
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      padding: 8px 16px;
-      cursor: pointer;
-      outline: none;
-      background-color: #4CAF50;
-      font-size: 1.2rem;
-      text-align: center;
-      text-decoration: none;
-      color: #fff;
-      transition: background-color 0.3s ease;
-      position: relative;
-      display: inline-block;
-    }
-
-    .addButton::after {
-      content: "Add Category";
-      position: absolute;
-      top: 10px;
-      left: 50px;
-      font-size: 0.9rem;
-      text-wrap: nowrap;
-      color: #4CAF50;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .addButton:hover::after {
-      opacity: 1;
-    }
-
-    .addButton:hover {
-      background-color: #45a049;
-    }
-
-    .addButton:active {
-      background-color: #3e8e41;
-      transform: translateY(4px);
-    }
-
-    .taskButton {
-      margin: 20px auto;
-      border: none;
-      border-radius: 20px;
-      padding: 10px 20px;
-      cursor: pointer;
-      outline: none;
-      background-color: #4CAF50;
-      font-size: 1.2rem;
-      text-align: center;
-      text-decoration: none;
-      color: #fff;
-      transition: background-color 0.3s ease;
-      display: inline-block;
-    }
-
-    .taskButton:hover {
-      background-color: #45a049;
-    }
-
-    .taskButton:active {
-      background-color: #3e8e41;
-      transform: translateY(4px);
-    }
-
-    .empty-message {
-      font-size: 1.2rem;
-      color: #333;
-      margin: 20px;
-    }
-
-    .btn.logout {
-      padding: 10px 15px;
-      position: absolute;
-      top: 10px;
-      left: 10%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 5px;
-      background-color: #C70039;
-      color: #ffffff; 
-      border: none; 
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn.logout:hover {
-      background-color: #FF5733;
-    }
-
-    .btn.logout i {
-      font-size: 16px;
-      color: #ffffff;
-    }
-
-    .btn.logout h3 {
-      height: 30px !important;
-      margin:0;
-      font-size: 18px;
-      display:flex;
-      justify-content: center;
-      align-items:center
-    }
-
-
-    .btn.logout svg{
-      height: 25px !important;
-      width: 25px !important;
-    }
-
-
-  </style>
-</head>
-<body>
-    <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn logout" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
-      </svg>
-
-      <h3>Logout</h3>
-  <% end %>
-  <h1>Categories <%= link_to "+", new_category_path, class: "addButton" %></h1>
-
-  <% if @categories.empty? %>
-    <p class="empty-message">Please click the plus sign to add a category now.</p>
-  <% else %>
-    <table class="category">
-      <thead>
+<% if @categories.empty? %>
+  <p class="text-center text-muted">Please click the plus sign to add a category now.</p>
+<% else %>
+  <div class="category-container mb-4" style="width: 100%; display: flex; flex-direction: column; flex: .9;">
+    <table class="table table-bordered table-striped table-hover" style="width: 80%; margin: 20px auto; background-color: #f8f9fa;">
+      <thead class="bg-success">
         <tr>
           <th>ID</th>
           <th>Name</th>
@@ -183,16 +32,15 @@
             <td><%= category.name %></td>
             <td><%= category.description %></td>
             <td>
-              <%= link_to 'Show', category_path(category) %> |
-              <%= link_to 'Edit', edit_category_path(category) %>
+              <%= link_to 'Show', category_path(category), class: "btn btn-info btn-sm" %> |
+              <%= link_to 'Edit', edit_category_path(category), class: "btn btn-warning btn-sm" %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  <% end %>
+    <%= link_to "Today's Task(s)", tasks_for_today_categories_path, class: "btn btn-primary", id: "today-task-button"%>
+  </div>
+<% end %>
 
-  <%= link_to "Today's Task(s)", tasks_for_today_categories_path, class: "taskButton" %>
 
-</body>
-</html>

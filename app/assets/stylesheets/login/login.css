@@ -1,0 +1,41 @@
+body {
+    height: 100vh;
+    background: url('assets/journal_bg.jpg') center 0/ cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+.container{
+    margin-bottom:10px;
+    background-color: none;
+}
+
+.card-body{
+    padding:30px;
+}
+
+.d-grid{
+    text-align:center;
+}
+  
+.btn.btn-primary{
+    padding-inline:20px;
+    background-color: #4CAF50;
+}
+  
+
+.btn.btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn.btn-primary:active {
+    background-color: #3e8e41;
+    transform: translateY(4px);
+}
+
+.text-center.mt-3{
+    display: flex;
+    flex-direction: column;
+}

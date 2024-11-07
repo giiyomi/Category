@@ -1,100 +1,13 @@
-<html>
-<head>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
 
-    .header {
-      width: 80%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0px;
-      margin-top: 20px;
-    }
-
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
-      flex-grow: 1;
-      margin:0px;
-    }
-
-    table {
-      width: 80%;
-      margin: 0px;
-      border-collapse: collapse;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    tr:hover {
-      background-color: #ddd;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-      background-color: #4CAF50;
-      border: none;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .button:hover {
-      background-color: #45a049;
-    }
-
-    .button:active {
-      background-color: #3e8e41;
-      transform: translateY(2px);
-    }
-
-    .button-container {
-      margin: 20px;
-      text-align: center;
-    }
-
-    p.notice {
-      margin: 20px;
-      color: green;
-      text-align: center;
-    }
   </style>
-</head>
-<body>
-  <div class="header">
-    <%= link_to '🔙', category_path(@category), class: 'button' %>
+
+  <%= stylesheet_link_tag 'task/task', media: 'all', 'data-turbo-track': 'reload' %>
+
+
+  <div class="header" id='specific-header-task'>
+    <%= link_to '🔙', category_path(@category), class: 'button', id: 'back-to-category-button' %>
     <h2 class="title">Tasks for <%= @category.name %>'s Category</h2>
   </div>
   <p class="notice"><%= notice %></p>
@@ -129,8 +42,7 @@
   <% end %>
 
   <div class="button-container">
-    <%= link_to 'Back to All Categories', categories_path, class: 'button' %>
-    <%= link_to 'Add Task', new_category_task_path(@category), class: 'button' %>
+    <%= link_to 'Back to All Categories', categories_path, class: 'button', id:'back-to-categories'%>
+    <%= link_to 'Add Task', new_category_task_path(@category), class: 'button', id: 'add-more-task-button' %>
   </div>
-</body>
-</html>
+
