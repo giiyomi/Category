@@ -1,9 +1,7 @@
 /*
  *= require_tree .
  *= require_self
-  *= require login/login
-  *= require categories/categories
-  *= require task/task
- */
- @import "bootstrap";
- @import "bootstrap-icons/font/bootstrap-icons";
+*/
+
+@import "bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";

@@ -8,12 +8,28 @@ body {
 }
 
 .container{
+    width: max-content;
     margin-bottom:10px;
+    padding: 0;
     background-color: none;
 }
 
 .card-body{
-    padding:30px;
+    padding:35px;
+}
+
+.login-title{
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    justify-content: flex-start;
+}
+
+.new_user{
+    display: flex;
+    flex-direction: column;
+    gap:0;
 }
 
 .d-grid{

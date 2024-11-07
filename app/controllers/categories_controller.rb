@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update ]
 
   def index
-    @categories = Category.all
+    @categories = current_user.categories.all
   end
 
   def tasks_for_today
@@ -18,14 +18,15 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.new(category_params)
 
     respond_to do |format|
-    if @category.save
-        format.html { redirect_to category_url(@category), notice: "Category was successfully added"}
-    else
-        format.html { render :new, status: :unprocessable_entity }
-        end
+      if @category.save
+          current_user.categories << @category
+          format.html { redirect_to category_url(@category), notice: "Category was successfully added"}
+      else
+          format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
   

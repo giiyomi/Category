@@ -1,109 +1,18 @@
 <html>
 <head>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
 
-    .container {
-      max-width: 40%;
-      width: 100%;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: left;
-    }
-
-    h1 {
-      color: #333;
-      margin: 0px;
-      text-align: center;
-    }
-
-    .form-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    .form-group input[type="text"], .form-group textarea, .form-group input[type="date"] {
-      width: 95%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: Arial, sans-serif;
-    }
-
-    .form-errors {
-      color: red;
-      margin-bottom: 20px;
-    }
-
-    .form-errors h2 {
-      margin: 0;
-    }
-
-    .form-errors ul {
-      margin: 0;
-      padding: 0 20px;
-      list-style-type: disc;
-    }
-
-    .form-errors ul li {
-      margin-left: 20px; 
-    }
-
-    .form-submit {
-      display: flex;
-      justify-content: center;
-    }
-
-    .button {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 1rem;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-      text-align: center;
-    }
-
-    .submit-button{
-      padding: 10px 50px;
-      cursor:pointer;
-    }
-
-    .button:hover {
-      background-color: #45a049;
-    }
 
   </style>
 </head>
+
+<%= stylesheet_link_tag 'tasks_folder/new_task/new_task', media: 'all', 'data-turbo-track': 'reload' %>
+
+
 <body>
   <div class="container">
-    <%= link_to "Back", category_tasks_path(@category), class: 'button' %>
-    <h1>New Task for <%= @category.name %></h1>
+    <%= link_to "Back", category_tasks_path(@category), class: 'back-button-new-task' %>
+    <h1 class='new-task-food-title'>New Task for <%= @category.name %></h1>
     <%= render 'form', category: @category, task: @task %>
   </div>
 </body>

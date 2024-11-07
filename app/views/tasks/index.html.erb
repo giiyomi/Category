@@ -1,48 +1,45 @@
+<%= stylesheet_link_tag 'tasks_folder/all_tasks/tasks', media: 'all', 'data-turbo-track': 'reload' %>
 
-  <style>
-
-  </style>
-
-  <%= stylesheet_link_tag 'task/task', media: 'all', 'data-turbo-track': 'reload' %>
-
-
-  <div class="header" id='specific-header-task'>
-    <%= link_to '🔙', category_path(@category), class: 'button', id: 'back-to-category-button' %>
-    <h2 class="title">Tasks for <%= @category.name %>'s Category</h2>
-  </div>
-  <p class="notice"><%= notice %></p>
-  <% if @tasks.any? %>
-    <table>
-      <thead>
+<div class="header" id='specific-header-task'>
+  <h2 class="title">Tasks for <%= @category.name %>'s Category</h2>
+</div>
+<p class="notice"><%= notice %></p>
+<% if @tasks.any? %>
+  <table id="all-task-table">
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Description</th>
+        <th>Category ID</th>
+        <th>Due Date</th>
+        <th>Action(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
         <tr>
-          <th>Task ID</th>
-          <th>Description</th>
-          <th>Category ID</th>
-          <th>Due Date</th>
-          <th>Action(s)</th>
+          <td><%= task.id %></td>
+          <td><%= task.details %></td>
+          <td><%= task.category_id %></td>
+          <td><%= task.due_date %></td>
+          <td>
+            <%= link_to 'Edit', edit_category_task_path(@category, task) %> |
+            <%= link_to 'Show', category_task_path(@category, task) %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @tasks.each do |task| %>
-          <tr>
-            <td><%= task.id %></td>
-            <td><%= task.details %></td>
-            <td><%= task.category_id %></td>
-            <td><%= task.due_date %></td>
-            <td>
-              <%= link_to 'Edit', edit_category_task_path(@category, task) %> |
-              <%= link_to 'Show', category_task_path(@category, task) %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>No further information yet</p>
-  <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No further information yet</p>
+<% end %>
 
-  <div class="button-container">
+<div class="button-container">
+  <%= link_to 'Add Task', new_category_task_path(@category), class: 'button', id: 'add-more-task-button' %>
+  
+  <div class='back-to-categoryies-container'>
+    <%= link_to 'Back to this category', category_path(@category), class: 'button', id: 'back-to-category-button' %>
     <%= link_to 'Back to All Categories', categories_path, class: 'button', id:'back-to-categories'%>
-    <%= link_to 'Add Task', new_category_task_path(@category), class: 'button', id: 'add-more-task-button' %>
   </div>
+</div>
 

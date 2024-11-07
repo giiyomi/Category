@@ -1,109 +1,12 @@
-<html>
-<head>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<%= stylesheet_link_tag 'categories/edit_category/edit_category', media: 'all', 'data-turbo-track': 'reload' %>
 
-    .container {
-      max-width: 40%;
-      width: 100%;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: left;
-    }
+<div class="container">
+  <h1>Editing Category</h1>
 
-    h1 {
-      font-size: 2rem;
-      color: #333;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+  <%= render "form", category: @category %>
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .form-errors {
-      color: red;
-      margin-bottom: 20px;
-    }
-
-    .form-errors h2 {
-      margin: 0 0 10px 0;
-    }
-
-    .form-errors ul {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-    }
-
-    .form-actions {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .form-actions input[type="submit"] {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .form-actions input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    .actions {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .actions a {
-      text-decoration: none;
-      color: #007bff;
-      font-size: 1rem;
-      margin: 0 10px;
-    }
-
-    .actions a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Editing Category</h1>
-
-    <%= render "form", category: @category %>
-
-    <div class="actions">
-      <%= link_to "Show this category", @category %>
-      <%= link_to "Back to Categories", categories_path %>
-    </div>
+  <div class="actions">
+    <%= link_to "Show this category", @category, class:"show-category-edit" %>
+    <%= link_to "Back to Categories", categories_path,  class: "back-to-categories-edit"  %>
   </div>
-</body>
-</html>
+</div>
