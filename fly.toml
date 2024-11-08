@@ -1,8 +1,8 @@
-app = "journalapp" # Replace with your Fly app name
+app = "journal"  # Replace with your Fly app name
 primary_region = "syd"
 
 [build]
-  builder = "heroku/buildpacks:20"
+  builder = "pack:buildpacks"
 
 [env]
   RAILS_ENV = "production"
