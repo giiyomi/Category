@@ -2,7 +2,7 @@ app = "journal"  # Replace with your Fly app name
 primary_region = "syd"
 
 [build]
-  builder = "pack:buildpacks"
+builder = "paketobuildpacks/builder:base"
 
 [env]
   RAILS_ENV = "production"
