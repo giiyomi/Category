@@ -1,0 +1,21 @@
+app = "journalapp" # Replace with your Fly app name
+primary_region = "syd"
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[env]
+  RAILS_ENV = "production"
+
+# Services configuration
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [services.concurrency]
+    soft_limit = 20
+    hard_limit = 25
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
