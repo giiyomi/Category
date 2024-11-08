@@ -1,136 +1,45 @@
-<html>
-<head>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+<%= stylesheet_link_tag 'tasks_folder/all_tasks/tasks', media: 'all', 'data-turbo-track': 'reload' %>
 
-    .header {
-      width: 80%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0px;
-      margin-top: 20px;
-    }
-
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
-      flex-grow: 1;
-      margin:0px;
-    }
-
-    table {
-      width: 80%;
-      margin: 0px;
-      border-collapse: collapse;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    tr:hover {
-      background-color: #ddd;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-      background-color: #4CAF50;
-      border: none;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .button:hover {
-      background-color: #45a049;
-    }
-
-    .button:active {
-      background-color: #3e8e41;
-      transform: translateY(2px);
-    }
-
-    .button-container {
-      margin: 20px;
-      text-align: center;
-    }
-
-    p.notice {
-      margin: 20px;
-      color: green;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <%= link_to '🔙', category_path(@category), class: 'button' %>
-    <h2 class="title">Tasks for <%= @category.name %>'s Category</h2>
-  </div>
-  <p class="notice"><%= notice %></p>
-  <% if @tasks.any? %>
-    <table>
-      <thead>
+<div class="header" id='specific-header-task'>
+  <h2 class="title">Tasks for <%= @category.name %>'s Category</h2>
+</div>
+<p class="notice"><%= notice %></p>
+<% if @tasks.any? %>
+  <table id="all-task-table">
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Description</th>
+        <th>Category ID</th>
+        <th>Due Date</th>
+        <th>Action(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
         <tr>
-          <th>Task ID</th>
-          <th>Description</th>
-          <th>Category ID</th>
-          <th>Due Date</th>
-          <th>Action(s)</th>
+          <td><%= task.id %></td>
+          <td><%= task.details %></td>
+          <td><%= task.category_id %></td>
+          <td><%= task.due_date %></td>
+          <td>
+            <%= link_to 'Edit', edit_category_task_path(@category, task) %> |
+            <%= link_to 'Show', category_task_path(@category, task) %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @tasks.each do |task| %>
-          <tr>
-            <td><%= task.id %></td>
-            <td><%= task.details %></td>
-            <td><%= task.category_id %></td>
-            <td><%= task.due_date %></td>
-            <td>
-              <%= link_to 'Edit', edit_category_task_path(@category, task) %> |
-              <%= link_to 'Show', category_task_path(@category, task) %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>No further information yet</p>
-  <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No further information yet</p>
+<% end %>
 
-  <div class="button-container">
-    <%= link_to 'Back to All Categories', categories_path, class: 'button' %>
-    <%= link_to 'Add Task', new_category_task_path(@category), class: 'button' %>
+<div class="button-container">
+  <%= link_to 'Add Task', new_category_task_path(@category), class: 'button', id: 'add-more-task-button' %>
+  
+  <div class='back-to-categoryies-container'>
+    <%= link_to 'Back to this category', category_path(@category), class: 'button', id: 'back-to-category-button' %>
+    <%= link_to 'Back to All Categories', categories_path, class: 'button', id:'back-to-categories'%>
   </div>
-</body>
-</html>
+</div>
+

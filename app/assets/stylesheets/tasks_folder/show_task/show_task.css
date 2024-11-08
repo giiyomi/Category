@@ -1,0 +1,91 @@
+
+#edit-this-task-button{
+    border: none;
+    background-color: rgb(40, 167, 69)
+}
+
+#edit-this-task-button:hover{
+    background-color: #1E7E34;
+}
+
+#delete-task-button-container{
+    width: 100%;
+    margin: 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+#delete-task-button{
+    position: static;
+}
+
+body {
+    font-family: Arial, sans-serif;      
+}
+
+h2, p {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-details-title{
+    height: max-content;
+}
+
+.button-container {
+    width: max-content;
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+}
+
+.edit-or-show-button-container > *{
+    height: max-content;
+    width: 160px;
+    border-radius: 25px;
+    text-wrap: nowrap   ;
+}
+
+.delete-task-button{
+    height: 100%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px  40px;
+    outline: none;
+    background-color: red;
+    color: white;
+    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effect */
+}
+
+.delete-task-button:hover {
+    border: 1px solid white;
+    background-color: darkred; /* Darker shade on hover */
+    transform: scale(1.05);    /* Slight scaling effect on hover */
+}
+
+.colorRed {
+    margin: 0px;
+    color: red;
+}
+
+.colorGreen {
+    margin: 0px;
+    color: green;
+}
+
+.hideDue {
+    display: none;
+}

@@ -17,6 +17,11 @@ gem "puma", ">= 5.0"
 
 gem 'bootstrap', '~> 5.3.0' # o ang pinakabagong bersyon
 
+gem 'thin', '~> 1.8.0'
+
+
+gem 'io-console'
+gem 'websocket-rails'
 
 gem 'sassc-rails'
 

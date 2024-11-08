@@ -3,6 +3,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
     create_table :tasks do |t|
       t.text :details
       t.integer :category_id
+      t.date :due_date
 
       t.timestamps
     end

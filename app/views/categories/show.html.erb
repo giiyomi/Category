@@ -1,103 +1,17 @@
-<html>
-<head>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<%= stylesheet_link_tag 'categories/show_category/show_category', media: 'all', 'data-turbo-track': 'reload' %>
 
-    .container {
-      max-width: 800px;
-      background-color: #fff;
-      padding: 50px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+<div class="container">
+  <h2>
+    Showing <%= @category.name %>'s Details
+    <%= link_to "✍️", edit_category_path(@category), class: "edit-icon" %>
+  </h2>
 
-    h2 {
-      margin: 0;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .edit-icon {
-      text-decoration: none;
-      margin-left: 10px;
-      cursor: pointer;
-      position: relative;
-      textt-decoration: none;
-    }
-
-    .edit-icon::after {
-      text-decoration: none;
-      content: "Edit this category";
-      position: absolute;
-      top: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 5px 10px;
-      border-radius: 5px;
-      white-space: nowrap;
-      font-size: .8rem;
-      opacity: 0;
-      visibility: hidden;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: opacity 0.2s ease, visibility 0.2s ease;
-    }
-
-    .edit-icon:hover::after {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #666;
-    }
-
-    .actions {
-      margin-top: 40px;
-    }
-
-    .actions a {
-      text-decoration: none;
-      color: #007bff;
-      margin: 0 15px;
-      font-size: 1.2rem;
-    }
-
-    .actions a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>
-      Showing <%= @category.name %>'s Details
-      <%= link_to "✍️", edit_category_path(@category), class: "edit-icon" %>
-    </h2>
-
+  <div class="category-details-container">
     <p><strong>Name:</strong> <%= @category.name %></p>
     <p><strong>Description:</strong> <%= @category.description %></p>
-
-    <div class="actions">
-      <%= link_to "◀️ Back to Categories", categories_path %>
-      <%= link_to "Category's Task(s) ▶️", category_tasks_path(@category) %>
-    </div>
   </div>
-</body>
-</html>
+  <div class="actions">
+    <%= link_to "◀️ Back to Categories", categories_path %>
+    <%= link_to "Category's Task(s) ▶️", category_tasks_path(@category) %>
+  </div>
+</div>
